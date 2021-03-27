@@ -4,10 +4,14 @@ const port = 8000;
 
 //express layouts for partials
 const expressLayouts = require("express-ejs-layouts");
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("./assets"));
 app.use(expressLayouts);
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
+
+//MongoDB
+const db = require("./config/mongoose");
 
 //set up view engine
 app.set("view engine", "ejs");

@@ -15,4 +15,9 @@ img {
 
 .nav-item {
   text-align: center;
+  padding: 10px;
+}
+
+.btn {
+  width: 6rem;
 }
