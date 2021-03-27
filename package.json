@@ -1,0 +1,21 @@
+{
+  "name": "clover",
+  "version": "1.0.0",
+  "description": "A basic social media web application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "social",
+    "web",
+    "project",
+    "media"
+  ],
+  "author": "Harkarman Singh",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  }
+}
