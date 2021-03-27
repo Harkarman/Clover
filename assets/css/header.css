@@ -1,0 +1,18 @@
+.navbar-brand {
+  /* font-weight: bolder; */
+  letter-spacing: 2px;
+  font-size: 25px;
+  padding-left: 10px;
+}
+nav {
+  background-color: rgb(0, 192, 58);
+}
+
+img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.nav-item {
+  text-align: center;
+}
