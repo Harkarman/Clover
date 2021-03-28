@@ -20,11 +20,22 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
-          <!-- <li class="nav-item">
-            <a href="/users/sign-up>" class="nav-link text-white mr-2">
-              User
+          <% if (locals.user) { %>
+          <li class="nav-item">
+            <a
+              href="/users/profile"
+              type="button"
+              class="btn btn-outline-light"
+            >
+              <%= user.name %>
             </a>
-          </li> -->
+          </li>
+          <li class="nav-item">
+            <a href="/users/sign-out" type="button" class="btn btn-danger">
+              Sign Out
+            </a>
+          </li>
+          <% } else { %>
           <li class="nav-item">
             <a href="/users/sign-up" type="button" class="btn btn-secondary">
               Sign Up
@@ -35,6 +46,7 @@
               Sign In
             </a>
           </li>
+          <% } %>
         </ul>
       </div>
     </div>

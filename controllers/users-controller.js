@@ -8,6 +8,9 @@ module.exports.profile = function (req, res) {
 
 //Sign up
 module.exports.signUp = function (req, res) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/users/profile");
+  }
   return res.render("user-sign-up", {
     title: "Clover | Sign Up",
   });
@@ -37,10 +40,14 @@ module.exports.create = function (req, res) {
 
 //Sign In
 module.exports.signIn = function (req, res) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/users/profile");
+  }
   return res.render("user-sign-in", {
     title: "Clover | Sign In",
   });
 };
 module.exports.createSession = function (req, res) {
   //TODO later
+  return res.redirect("/");
 };

@@ -1,7 +1,7 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const app = express();
 const port = 8000;
-const cookieParser = require("cookie-parser");
 
 //express layouts for partials
 const expressLayouts = require("express-ejs-layouts");
@@ -21,6 +21,24 @@ app.set("views", "./views");
 //Express session
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+const session = require("express-session");
+const passport = require("passport");
+const passportLocal = require("./config/passport-local-strategy");
+
+app.use(
+  session({
+    name: "development",
+    secret: "xp*Y=%sz8I+0:4m", //key used to encrypt the cookie
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+      maxAge: 1000 * 60 * 100,
+    },
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(passport.setAuthenticatedUser);
 
 //user express router
 app.use("/", require("./routes"));
