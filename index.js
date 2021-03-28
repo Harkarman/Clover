@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 8000;
+const cookieParser = require("cookie-parser");
 
 //express layouts for partials
 const expressLayouts = require("express-ejs-layouts");
@@ -16,6 +17,10 @@ const db = require("./config/mongoose");
 //set up view engine
 app.set("view engine", "ejs");
 app.set("views", "./views");
+
+//Express session
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 //user express router
 app.use("/", require("./routes"));
