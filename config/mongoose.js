@@ -5,6 +5,7 @@ mongoose.connect("mongodb://localhost/clover-development", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
+  useFindAndModify: false,
 });
 
 const db = mongoose.connection;
