@@ -102,7 +102,24 @@
             </div>
           </div>
         </div>
-        <% } else {%> Disabled <% } %>
+        <% } else { %> <% if (locals.is_friend) { %>
+        <a
+          type="button"
+          href="/users/profile/<%=profile_user._id%>/toggle-friend"
+          id="add-friend"
+          class="btn btn-primary text-white text-nowrap mt-4"
+          style="width: 35%"
+          >Add Friend</a
+        >
+        <% } else { %>
+        <a
+          type="button"
+          href="/users/profile/<%=profile_user._id%>/toggle-friend"
+          class="btn btn-danger text-white text-nowrap mt-4"
+          style="width: 35%"
+          >Remove Friend</a
+        >
+        <% } %> <% } %>
       </div>
     </section>
   </div>

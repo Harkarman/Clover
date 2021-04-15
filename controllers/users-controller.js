@@ -1,12 +1,29 @@
 const User = require("../models/user");
+const Friends = require("../models/friends");
 const fs = require("fs");
 const path = require("path");
 
 module.exports.profile = function (req, res) {
   User.findById(req.params.id, function (err, user) {
+    let is_friend = false;
+    Friends.findOne({
+      $or: [
+        { from_user: req.user._id, to_user: req.params._id },
+        { from_user: req.params._id, to_user: req.user._id },
+      ],
+      function(err, friends) {
+        if (err) {
+          console.log("Error finding friend", err);
+        }
+        if (friends) {
+          is_friend = true;
+        }
+      },
+    });
     return res.render("user-profile", {
       title: "User Profile",
       profile_user: user,
+      is_friend: is_friend,
     });
   });
 };
