@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/css/friends-users.css" />
+
+<div class="page-heading">
+  <h2 style="padding: 0px 50px">All users</h2>
+</div>
+
+<% if (locals.user) { %> <% for (user of users) { %>
+<div class="container">
+  <div class="col-md-8 mx-auto">
+    <div class="user-list">
+      <div class="user-card">
+        <div class="row">
+          <div class="col-md-2 col-sm-2">
+            <% if (user.avatar) { %>
+            <img
+              src="<%= user.avatar %>"
+              alt="<%= user.name %>"
+              class="profile-photo-lg"
+            />
+            <% } %>
+          </div>
+          <div class="col-md-7 col-sm-7">
+            <br />
+            <h5>
+              <a href="/users/profile/<%= user.id %>" class="profile-link"
+                ><%= user.name %></a
+              >
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% } %> <% } %>

@@ -4,28 +4,34 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports.profile = function (req, res) {
-  User.findById(req.params.id, function (err, user) {
-    let is_friend = false;
-    Friends.findOne({
-      $or: [
-        { from_user: req.user._id, to_user: req.params._id },
-        { from_user: req.params._id, to_user: req.user._id },
-      ],
-      function(err, friends) {
-        if (err) {
-          console.log("Error finding friend", err);
+  User.findById(req.params.id)
+    .populate({ path: "friends" })
+    .exec(function (err, user) {
+      let isFriend = false;
+      let isPending = false;
+      for (friendship of user.friends) {
+        if (
+          friendship.sender == req.user.id ||
+          friendship.receiver == req.user.id
+        ) {
+          isPending = true;
         }
-        if (friends) {
-          is_friend = true;
+        if (
+          friendship.sender == req.user.id ||
+          (friendship.receiver == req.user.id && friendship.accept_request)
+        ) {
+          isFriend = true;
+          isPending = false;
+          break;
         }
-      },
+      }
+      return res.render("user-profile", {
+        title: "User Profile",
+        profile_user: user,
+        isFriend: isFriend,
+        isPending: isPending,
+      });
     });
-    return res.render("user-profile", {
-      title: "User Profile",
-      profile_user: user,
-      is_friend: is_friend,
-    });
-  });
 };
 
 //Update user profile

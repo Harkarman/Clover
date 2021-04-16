@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="/css/friends-users.css" />
+
+<div class="page-heading">
+  <h2 style="padding: 0px 50px">Pending requests</h2>
+</div>
+
+<% for(pendingRequests of friendRequests){ %>
+<div class="container-sm">
+  <div class="col-md-8 mx-auto">
+    <div class="user-list">
+      <div class="user-card">
+        <div class="row">
+          <div class="col-md-2 col-sm-2">
+            <img
+              src="<%= pendingRequests.sender.avatar %>"
+              alt="<%= pendingRequests.sender.name %>"
+              class="profile-photo-lg"
+            />
+          </div>
+          <div class="col-md-7 col-sm-7">
+            <br />
+            <h5>
+              <a
+                href="/users/profile/<%= pendingRequests.sender._id %>"
+                class="profile-link"
+                ><%= pendingRequests.sender.name %></a
+              >
+            </h5>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <a
+              class="btn btn-primary pull-right add-button"
+              href="/friends/accept-friend-request/<%= pendingRequests._id %>"
+              role="button"
+              >Accept</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% } %>

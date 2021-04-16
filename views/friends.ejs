@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="/css/friends-users.css" />
+
+<div class="page-heading">
+  <h2 style="padding: 0px 50px">Friends</h2>
+  <p>
+    <a href="/friends/all-users">Find friends</a>
+  </p>
+</div>
+
+<% for (friend of friends) { %> <% if (friend.sender.id ==locals.user.id) { %>
+<div class="container-sm">
+  <div class="col-md-8 mx-auto">
+    <div class="user-list">
+      <div class="user-card">
+        <div class="row">
+          <div class="col-md-2 col-sm-2">
+            <img
+              src="<%= friend.receiver.avatar %>"
+              alt="<%= friend.receiver.name %>"
+              class="profile-photo-lg"
+            />
+          </div>
+          <div class="col-md-7 col-sm-7">
+            <br />
+            <h5>
+              <a
+                href="/users/profile/<%= friend.receiver._id %>"
+                class="profile-link"
+                ><%= friend.receiver.name %></a
+              >
+            </h5>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <a
+              class="btn btn-danger pull-right add-button"
+              href="/friends/toggle-friend/<%= friend.receiver._id %>"
+              role="button"
+              >Remove</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% } else { %>
+<div class="container-sm">
+  <div class="col-md-8 mx-auto">
+    <div class="user-list">
+      <div class="user-card">
+        <div class="row">
+          <div class="col-md-2 col-sm-2">
+            <img
+              src="<%= friend.sender.avatar %>"
+              alt="<%= friend.sender.name %>"
+              class="profile-photo-lg"
+            />
+          </div>
+          <div class="col-md-7 col-sm-7">
+            <br />
+            <h5>
+              <a
+                href="/users/profile/<%= friend.sender._id %>"
+                class="profile-link"
+                ><%= friend.sender.name %></a
+              >
+            </h5>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <a
+              class="btn btn-danger pull-right add-button"
+              href="/friends/toggle-friend/<%= friend.sender._id %>"
+              role="button"
+              >Remove</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% } %> <% } %>

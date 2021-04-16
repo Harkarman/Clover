@@ -10,7 +10,6 @@ router.get(
   passport.checkAuthentication,
   usersController.profile
 );
-router.get("/profile/:id/toggle-friend", friendsController.toggleFriend);
 router.post(
   "/update/:id",
   passport.checkAuthentication,
@@ -25,5 +24,8 @@ router.post(
   usersController.createSession
 );
 router.get("/sign-out", usersController.destroySession);
+
+router.get("/friends", friendsController.friendsPage);
+router.get("/friend-requests", friendsController.friendRequests);
 
 module.exports = router;

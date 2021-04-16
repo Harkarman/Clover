@@ -102,25 +102,19 @@
             </div>
           </div>
         </div>
-        <% } else { %> <% if (locals.is_friend) { %>
-        <a
-          type="button"
-          href="/users/profile/<%=profile_user._id%>/toggle-friend"
-          id="add-friend"
-          class="btn btn-primary text-white text-nowrap mt-4"
-          style="width: 35%"
-          >Add Friend</a
-        >
-        <% } else { %>
-        <a
-          type="button"
-          href="/users/profile/<%=profile_user._id%>/toggle-friend"
-          class="btn btn-danger text-white text-nowrap mt-4"
-          style="width: 35%"
-          >Remove Friend</a
-        >
-        <% } %> <% } %>
+        <% } %>
       </div>
+      <!--* prettier-ignore -->
+      <% if(locals.user && locals.user.id != profile_user._id) { %>
+      <a
+        href="/friends/toggle-friend/<%= profile_user._id %>"
+        class="btn btn-secondary"
+        role="button"
+        style="width: 35%"
+      >
+        <% if(isFriend) { %> Remove <% } else { %> Add Friend <% } %>
+      </a>
+      <% } %>
     </section>
   </div>
 </div>
