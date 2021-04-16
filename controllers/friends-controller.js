@@ -70,7 +70,7 @@ module.exports.friendRequests = async function (req, res) {
 
 module.exports.acceptRequest = async function (req, res) {
   let friend = await Friends.findById(req.params.id);
-  await friend.update({ accept_request: true });
+  await friend.updateOne({ accept_request: true });
   return res.redirect("back");
 };
 
