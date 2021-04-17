@@ -3,9 +3,9 @@ body {
   padding: 0;
 }
 #profile-picture {
-  width: 150px;
-  height: 150px;
-  border-radius: 3%;
+  width: 200px;
+  height: 200px;
+  border-radius: 5%;
 }
 #profile-picture img {
   border-radius: inherit;

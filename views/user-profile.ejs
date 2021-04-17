@@ -2,32 +2,37 @@
 
 <div class="container mt-4">
   <div>
-    <section class="col-sm-4 pb-2 pt-2">
-      <div id="profile-picture" class="ml-auto mr-auto mt-2 mb-2">
+    <section class="col-sm-12 pb-2 pt-2">
+      <div id="profile-picture" class="mx-auto mt-5 mb-2">
         <img src="<%= profile_user.avatar %>" alt="<%= profile_user.name %>" />
       </div>
-      <div id="profile-name">
-        <h3>
+      <div id="profile-name" class="text-center">
+        <h1 class="display-3">
           <%= profile_user.name.charAt(0).toUpperCase() +
           profile_user.name.slice(1) %>
-        </h3>
+        </h1>
+      </div>
+      <div class="text-center">
+        <p><%= profile_user.email %></p>
       </div>
       <!-- Update user profile -->
       <div>
         <% if (profile_user.id==user.id){ %>
         <!--* Button to trigger modal -->
-        <button
-          type="button"
-          class="btn btn-info mt-4"
-          data-bs-toggle="modal"
-          data-bs-target="#updateProfileModal"
-          style="width: 35%"
-        >
-          Update Profile
-        </button>
+        <div class="text-center">
+          <button
+            type="button"
+            class="btn btn-info mt-4 text-center"
+            data-bs-toggle="modal"
+            data-bs-target="#updateProfileModal"
+            style="width: 10rem"
+          >
+            Update Profile
+          </button>
+        </div>
         <!--* Modal content -->
         <div
-          class="modal fade"
+          class="modal fade text-left"
           id="updateProfileModal"
           tabindex="-1"
           aria-labelledby="updateProfileModalLabel"
@@ -106,14 +111,16 @@
       </div>
       <!--* prettier-ignore -->
       <% if(locals.user && locals.user.id != profile_user._id) { %>
-      <a
-        href="/friends/toggle-friend/<%= profile_user._id %>"
-        class="btn btn-secondary"
-        role="button"
-        style="width: 35%"
-      >
-        <% if(isFriend) { %> Remove <% } else { %> Add Friend <% } %>
-      </a>
+      <div class="text-center">
+        <a
+          href="/friends/toggle-friend/<%= profile_user._id %>"
+          class="btn btn-secondary mt-4"
+          role="button"
+          style="width: 10rem"
+        >
+          <% if(isFriend) { %> Remove <% } else { %> Add Friend <% } %>
+        </a>
+      </div>
       <% } %>
     </section>
   </div>
