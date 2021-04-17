@@ -1,6 +1,7 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
 const Like = require("../models/like");
+const User = require("../models/user");
 
 module.exports.create = async function (req, res) {
   try {
@@ -14,7 +15,7 @@ module.exports.create = async function (req, res) {
       post.comments.push(comment);
       post.save();
       //! Populate only usernames and not passwords.
-      comment = await comment.populate("user", "name").execPopulate();
+      comment = await comment.populate("user", "name email").execPopulate();
       if (req.xhr) {
         return res
           .status(200)

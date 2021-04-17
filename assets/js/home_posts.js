@@ -1,5 +1,5 @@
 {
-  //method to submit form data for new post using AJAX
+  //* Method to submit form data for new post using AJAX
   let createPost = function () {
     let newPostForm = $("#new-post-form");
 
@@ -7,17 +7,17 @@
       e.preventDefault();
 
       $.ajax({
-        type: "POST", //suspect
+        type: "POST",
         url: "/posts/create",
         data: newPostForm.serialize(),
         success: function (data) {
-          let newPost = newPostDOM(data.data.post); //suspect
+          let newPost = newPostDOM(data.data.post);
           $("#posts-list-container>ul").prepend(newPost);
           deletePost($(" .delete-post-button", newPost));
-
+          $("textarea")[0].value = ""; //* Clearing textarea.
           new PostComments(data.data.post._id);
 
-          // enable toggle like functionality on new post
+          //* Enable toggling of likes on new post.
           new ToggleLike($(" .toggle-like-button", newPost));
 
           //Solution to Noty in AJAX here:
@@ -37,7 +37,7 @@
     });
   };
 
-  // method to create a post in DOM
+  //* Method to create a post in DOM
   let newPostDOM = function (post) {
     return $(`<li id="post-${post._id}" class="list-group-item">
                     <div>
@@ -110,7 +110,7 @@
                 </li>`);
   };
 
-  // method to delete post from DOM
+  //* Method to delete post from DOM
   let deletePost = function (deleteLink) {
     $(deleteLink).click(function (e) {
       e.preventDefault();
@@ -134,14 +134,14 @@
     });
   };
 
-  // Extend Ajax to delete links on existing posts (on page reload), and not just the new posts.
+  //* Extend Ajax to delete links on existing posts (on page reload), and not just the new posts.
   let convertPostsToAjax = function () {
     $("#posts-list-container>ul>li").each(function () {
       let self = $(this);
       let deleteButton = $(" .delete-post-button", self);
       deletePost(deleteButton);
 
-      // get the post id by splitting id attribute
+      //* Get the post id by splitting id attribute
       let postId = self.prop("id").split("-")[1];
       new PostComments(postId);
     });

@@ -1,16 +1,9 @@
 <li id="comment-<%= comment._id %>" class="list-group-item">
-  <p>
-    <% if (locals.user && locals.user.id == comment.user) { %>
-    <small>
-      <a
-        class="delete-comment-button"
-        href="/comments/destroy/<%= comment.id %>"
-        ><i class="fas fa-trash-alt"></i
-      ></a>
-    </small>
-    <% } %> <%= comment.content %>
-    <br />
-    <small> <%= comment.user.name %> </small>
+  <div>
+    <div>
+      <span><b><%= comment.user.name %></b></span> &nbsp;
+      <span><%= comment.content %></span>
+    </div>
     <!-- Display comment likes. If user is logged in, show link to toggle likes, else just show count. -->
     <small>
       <% if (locals.user) { %>
@@ -21,7 +14,15 @@
       >
         <%= comment.likes.length %> Likes
       </a>
-      <% }else{ %> <%= comment.likes.length %> Likes <% } %>
+      <% }else{ %> <%= comment.likes.length %> Likes <% } %> </small
+    >&nbsp;&nbsp; <% if (locals.user && locals.user.id == comment.user.id) { %>
+    <small>
+      <a
+        class="delete-comment-button"
+        href="/comments/destroy/<%= comment.id %>"
+        ><i class="fas fa-trash-alt"></i
+      ></a>
     </small>
-  </p>
+    <% } %>
+  </div>
 </li>

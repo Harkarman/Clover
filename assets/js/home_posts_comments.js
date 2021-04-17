@@ -27,9 +27,10 @@ class PostComments {
         success: function (data) {
           let newComment = pSelf.newCommentDOM(data.data.comment);
           $(`#post-comments-${postId}`).prepend(newComment);
+          $(`#post-${postId}-comments-form input`)[0].value = ""; //* Clearing input.
           pSelf.deleteComment($(" .delete-comment-button", newComment));
 
-          // enable toggle like functionality on new comment
+          //* Enable toggle like functionality on new comment
           new ToggleLike($(" .toggle-like-button", newComment));
 
           new Noty({
@@ -49,16 +50,11 @@ class PostComments {
 
   newCommentDOM(comment) {
     return $(`<li id="comment-${comment._id}" class="list-group-item">
-                        <p> 
-                            <small>
-                                <a class="delete-comment-button" href="/comments/destroy/${comment._id}">
-                                <i class="fas fa-trash-alt"></i></a>
-                            </small>
-                              ${comment.content}
-                              <br>
-                            <small>
-                              ${comment.user.name}
-                            </small>
+                        <div> 
+                            <div>
+                              <span><b>${comment.user.name}</b></span> &nbsp;
+                              <span>${comment.content}</span>
+                            </div>  
                             <small>
                               <a
                                 class="toggle-like-button"
@@ -67,8 +63,12 @@ class PostComments {
                               >
                                 0 Likes
                               </a>                
+                            </small> &nbsp;&nbsp;
+                            <small>
+                                <a class="delete-comment-button" href="/comments/destroy/${comment._id}">
+                                <i class="fas fa-trash-alt"></i></a>
                             </small>
-                        </p>    
+                        </div>    
                 </li>`);
   }
 

@@ -10,14 +10,14 @@ module.exports.home = async function (req, res) {
       .populate({
         path: "comments",
         populate: { path: "user" },
-        populate: { path: "likes" },
+        // populate: { path: "likes" }, //! Comments was not getting populated, this fixes it but might break something else.
       })
       .populate("likes");
     let users = await User.find({});
     return res.render("home", {
       title: "Clover | Home",
       posts: posts,
-      users: users,
+      all_users: users,
     });
   } catch (err) {
     console.log("error", err);

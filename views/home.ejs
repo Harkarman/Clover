@@ -1,10 +1,15 @@
 <link rel="stylesheet" href="/css/home.css" />
 
-<div class="container-fluid">
+<div class="container-fluid bg-black">
   <div class="row">
     <section id="feed-posts" class="col-sm-6 mt-4 mx-auto">
       <% if (locals.user) { %>
-      <form action="/posts/create" id="new-post-form" method="post">
+      <form
+        action="/posts/create"
+        id="new-post-form"
+        method="post"
+        class="clearfix"
+      >
         <div class="form-group mb-1">
           <textarea
             class="form-control"
@@ -20,14 +25,14 @@
           <button
             type="submit"
             value="Post"
-            class="btn btn-primary mb-2 float-right"
+            class="btn btn-primary mb-2 float-end"
           >
             Post
           </button>
         </div>
       </form>
       <% } %>
-      <div id="posts-list-container">
+      <div id="posts-list-container" class="">
         <ul class="list-group">
           <% for(post of posts){ %> <%- include("_post") -%> <% } %>
         </ul>

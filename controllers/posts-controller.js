@@ -8,9 +8,9 @@ module.exports.create = async function (req, res) {
       content: req.body.content,
       user: req.user._id,
     });
+    //! Populate only usernames and not passwords.
+    post = await post.populate("user", "name").execPopulate();
     if (req.xhr) {
-      //! Populate only usernames and not passwords.
-      post = await post.populate("user", "name").execPopulate();
       return res
         .status(200)
         .json({ data: { post: post }, message: "Post created" });
