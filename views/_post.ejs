@@ -1,15 +1,11 @@
-<li id="post-<%= post._id %>">
-  <p>
-    <% if (locals.user && locals.user.id == post.user.id) { %>
-    <small>
-      <a class="delete-post-button" href="/posts/destroy/<%= post.id %>"
-        ><i class="fas fa-trash-alt"></i
-      ></a>
-    </small>
-    <% } %> <%= post.content %>
-    <br />
-    <small> <%= post.user.name %> </small>
-    <br />
+<li id="post-<%= post._id %>" class="list-group-item">
+  <div>
+    <div>
+      <span><img src="<%= post.user.avatar %>" alt="" width="20px" /></span>
+      &nbsp;&nbsp;
+      <span><%= post.user.name %></span>
+    </div>
+    <div style="margin-top: 10px"><%= post.content %></div>
     <!-- Display post likes. If user is logged in, show link to toggle likes, else just show count. -->
     <small>
       <% if (locals.user) { %>
@@ -18,31 +14,63 @@
         data-likes="<%= post.likes.length %>"
         href="/likes/toggle/?id=<%= post._id %>&type=Post"
       >
-        <%= post.likes.length %> Likes
-      </a>
-      <% }else{ %> <%= post.likes.length %> Likes <% } %>
+        <%= post.likes.length %> Likes </a
+      >&nbsp;
+      <span>
+        <a
+          href="#post-<%= post._id %>-comments-form"
+          data-bs-toggle="collapse"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+          >Comment
+        </a>
+      </span>
+      <% }else{ %> <%= post.likes.length %> Likes <% } %> </small
+    >&nbsp;&nbsp;&nbsp; <% if (locals.user && locals.user.id == post.user.id) {
+    %>
+    <small>
+      <a class="delete-post-button" href="/posts/destroy/<%= post.id %>"
+        ><i class="fas fa-trash-alt"></i
+      ></a>
     </small>
-  </p>
+    <% } %>
+  </div>
+
   <div class="post-comments">
     <% if (locals.user){ %>
     <form
       id="post-<%= post._id %>-comments-form"
       action="/comments/create"
       method="POST"
+      class="collapse"
     >
-      <input
-        type="text"
-        name="content"
-        placeholder="Type here to add comment..."
-        required
-      />
-      <input type="hidden" name="post" value="<%= post._id %>" />
-      <input type="submit" value="Add Comment" />
+      <div class="row g-3 align-items-center">
+        <div class="col-sm-10">
+          <input
+            type="text"
+            name="content"
+            placeholder="Type here to add comment..."
+            required
+            class="form-control"
+          />
+        </div>
+        <input type="hidden" name="post" value="<%= post._id %>" />
+        <div class="col-auto">
+          <span class="form-text"
+            ><input
+              class="btn btn-secondary"
+              type="submit"
+              value="Comment"
+              style="width: 95px"
+          /></span>
+        </div>
+      </div>
     </form>
     <% } %>
 
     <div class="post-comments-list">
-      <ul id="post-comments-<%= post._id %>">
+      <ul id="post-comments-<%= post._id %>" class="list-group">
         <% for (comment of post.comments){ %> <%- include("_comment") -%> <% }
         %>
       </ul>

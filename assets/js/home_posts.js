@@ -39,18 +39,16 @@
 
   // method to create a post in DOM
   let newPostDOM = function (post) {
-    return $(`<li id="post-${post._id}">
-                    <p>                        
-                        <small>
-                            <a class="delete-post-button" href="/posts/destroy/${post._id}">
-                            <i class="fas fa-trash-alt"></i></a>
-                        </small>
-                          ${post.content}
-                          <br>
-                        <small>
-                          ${post.user.name}
-                        </small>
-                        <br>
+    return $(`<li id="post-${post._id}" class="list-group-item">
+                    <div>
+                      <div>
+                        <span><img src="${post.user.avatar}" alt="" width="20px" /></span>
+                        &nbsp;&nbsp;
+                        <span>${post.user.name}</span>
+                      </div>
+                      <div style="margin-top: 10px">                       
+                        ${post.content}
+                      </div>
                         <small>
                           <a
                             class="toggle-like-button"
@@ -58,17 +56,54 @@
                             href="/likes/toggle/?id=${post._id}&type=Post"
                           >
                             0 Likes
-                          </a>
+                          </a>&nbsp;
+                          <span>
+                            <a
+                              href="#post-${post._id}-comments-form"
+                              data-bs-toggle="collapse"
+                              role="button"
+                              aria-expanded="false"
+                              aria-controls="collapseExample"
+                              >Comment
+                            </a>
+                          </span>
+                        </small>&nbsp;&nbsp;&nbsp;
+                        <small>
+                            <a class="delete-post-button" href="/posts/destroy/${post._id}">
+                            <i class="fas fa-trash-alt"></i></a>
                         </small>
-                    </p>
+                    </div>
                     <div class="post-comments">                        
-                            <form id="post-${post._id}-comments-form" action="/comments/create" method="POST">
-                                <input type="text" name="content" placeholder="Type Here to add comment..." required>
-                                <input type="hidden" name="post" value="${post._id}" >
-                                <input type="submit" value="Add Comment">
-                            </form>         
+                            <form
+                                id="post-${post._id}-comments-form"
+                                action="/comments/create"
+                                method="POST"
+                                class="collapse"
+                              >
+                                <div class="row g-3 align-items-center">
+                                  <div class="col-sm-10">
+                                    <input
+                                      type="text"
+                                      name="content"
+                                      placeholder="Type here to add comment..."
+                                      required
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <input type="hidden" name="post" value="${post._id}" />
+                                  <div class="col-auto">
+                                    <span class="form-text"
+                                      ><input
+                                        class="btn btn-secondary"
+                                        type="submit"
+                                        value="Comment"
+                                        style="width: 95px"
+                                    /></span>
+                                  </div>
+                                </div>
+                              </form>        
                         <div class="post-comments-list">
-                            <ul id="post-comments-${post._id}">   
+                            <ul id="post-comments-${post._id}" class="list-group">   
                             </ul>
                         </div>
                     </div> 

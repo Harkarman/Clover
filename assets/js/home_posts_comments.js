@@ -48,7 +48,7 @@ class PostComments {
   }
 
   newCommentDOM(comment) {
-    return $(`<li id="comment-${comment._id}">
+    return $(`<li id="comment-${comment._id}" class="list-group-item">
                         <p> 
                             <small>
                                 <a class="delete-comment-button" href="/comments/destroy/${comment._id}">
