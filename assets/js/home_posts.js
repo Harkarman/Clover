@@ -150,3 +150,8 @@
   createPost();
   convertPostsToAjax();
 }
+
+$("#chat-button").click(function (e) {
+  event.preventDefault();
+  $("#user-chat-box").toggleClass("d-none");
+});
