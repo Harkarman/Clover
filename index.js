@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
 const port = 8000;
@@ -15,6 +16,9 @@ app.set("layout extractScripts", true);
 //MongoDB
 const db = require("./config/mongoose");
 
+app.use(cors());
+app.options("*", cors());
+
 //set up view engine
 app.set("view engine", "ejs");
 app.set("views", "./views");
@@ -30,6 +34,11 @@ const MongoStore = require("connect-mongo")(session);
 //Middlewares
 const flash = require("connect-flash");
 const customMiddleware = require("./config/middleware");
+
+const chatServer = require("http").Server(app);
+const chatSockets = require("./config/chat_sockets").chatSockets(chatServer);
+chatServer.listen(5000);
+console.log("chat server is listening on port 5000");
 
 app.use(
   session({
