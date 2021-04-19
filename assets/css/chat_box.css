@@ -1,54 +1,85 @@
 #user-chat-box {
   position: fixed;
-  bottom: 10px;
-  right: 10px;
-  border: 1px dashed grey;
-  height: 350px;
-  width: 300px;
-  background: white;
-  padding: 5px;
-  box-shadow: 1px 1px 1px 1px lightgrey;
+  bottom: 10%;
+  right: 0.5%;
+  width: 450px;
+  height: 50%;
 }
-#user-chat-box #chat-messages-list {
+
+.card {
+  width: 450px;
+  border: none;
+  border-radius: 15px;
+}
+
+.chat-header {
+  background: #04cb28;
+  border-radius: 15px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  font-size: 12px;
+  height: 46px;
+}
+
+#chat-messages-list {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  list-style: none;
+}
+
+#chat-messages-list::-webkit-scrollbar {
+  display: none;
+}
+
+.bg-white {
+  border: 1px solid #e7e7e9;
+  font-size: 10px;
+  border-radius: 20px;
+}
+
+.form-control {
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control::placeholder {
+  color: #c4c4c4;
+}
+
+.form-group .btn {
+  border-radius: 12px;
+  margin-left: -40px;
+  margin-bottom: 10px;
+}
+
+#chat-messages-list {
   list-style: none;
   padding: 10px;
   height: 70%;
   background-color: white;
   overflow: auto;
 }
-#user-chat-box #chat-messages-list .other-message {
+.other-message {
   text-align: left;
   padding: 5px;
 }
-#user-chat-box #chat-messages-list .other-message span {
+.other-message span {
   display: inline-block;
   padding: 15px;
   background-color: #ffa0a0;
 }
-#user-chat-box #chat-messages-list .self-message {
+.self-message {
   text-align: right;
   padding: 5px;
 }
-#user-chat-box #chat-messages-list .self-message span {
+.self-message span {
   display: inline-block;
   padding: 15px;
   background-color: #a0dcff;
-}
-#user-chat-box #chat-message-input-container {
-  height: 24%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-}
-#user-chat-box #chat-message-input-container #chat-message-input {
-  height: 50%;
-  width: 70%;
-}
-#user-chat-box #chat-message-input-container #send-message {
-  height: 50%;
-  width: 30%;
-  font-size: 25px;
-  color: white;
-  border: none;
-  background: #58d258;
 }
