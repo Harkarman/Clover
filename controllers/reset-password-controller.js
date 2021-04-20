@@ -62,7 +62,6 @@ module.exports.changePassword = function (req, res) {
     { access_token: linkToken },
     { $set: { is_valid: false } },
     function (err, token) {
-      console.log(token);
       if (err) {
         return;
       }
