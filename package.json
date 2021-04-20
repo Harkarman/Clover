@@ -20,6 +20,7 @@
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "del": "^6.0.0",
     "dotenv-flow": "^3.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
@@ -35,5 +36,12 @@
     "passport-local": "^1.0.0",
     "rotating-file-stream": "^2.1.5",
     "socket.io": "^4.0.1"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-rev": "^9.0.0",
+    "gulp-uglify-es": "^2.0.0"
   }
 }

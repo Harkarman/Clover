@@ -14,3 +14,6 @@ uploads/
 
 # Ignore production logs
 production-logs/
+
+# Ignore public files
+public/

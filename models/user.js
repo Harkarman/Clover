@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     name: { type: String, required: true },
-    avatar: { type: String },
+    avatar: { type: String, default: "/images/profile-default.png" },
     friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "Friends" }],
   },
   { timestamps: true }
