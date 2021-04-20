@@ -1,13 +1,16 @@
-#ignore the node_modules folder
+# Ignore the node_modules folder
 node_modules/
 
-#ignore uploads folder
+# Ignore uploads folder
 uploads/
 
-#ignore redis binary dump files
+# Ignore redis binary dump files
 *.rdb
 
-# ignore environment file
+# Ignore environment file
 .env
 .env.development
 .env.production
+
+# Ignore production logs
+production-logs/

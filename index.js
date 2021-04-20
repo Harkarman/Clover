@@ -1,8 +1,21 @@
 const express = require("express");
+const morgan = require("morgan"); //Logger middleware
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
 const port = 8000;
+
+//Logging
+const fs = require("fs");
+const rfs = require("rotating-file-stream");
+const path = require("path");
+const logDirectory = path.join(__dirname, "./production-logs");
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+const accessLogStream = rfs.createStream("access.log", {
+  interval: "1d",
+  path: logDirectory,
+});
+app.use(morgan("combined", { stream: accessLogStream }));
 
 //express layouts for partials
 const expressLayouts = require("express-ejs-layouts");
@@ -19,7 +32,7 @@ const db = require("./config/mongoose");
 app.use(cors());
 app.options("*", cors());
 
-//set up view engine
+//Set up view engine
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
@@ -69,7 +82,7 @@ app.use(passport.setAuthenticatedUser);
 app.use(flash());
 app.use(customMiddleware.setFlash);
 
-//user express router
+//Use express router
 app.use("/", require("./routes"));
 
 app.listen(port, function (err) {
