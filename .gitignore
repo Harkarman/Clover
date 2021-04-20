@@ -7,5 +7,7 @@ uploads/
 #ignore redis binary dump files
 *.rdb
 
-#temporarily ignore nodemailer config
-/config/nodemailer.js 
+# ignore environment file
+.env
+.env.development
+.env.production

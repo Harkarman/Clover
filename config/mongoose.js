@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/clover-development", {
+mongoose.connect(`mongodb://localhost/${process.env.DB}`, {
   //added {useNewUrlParser: true, useUnifiedTopology: true} to deal with warnings in terminal
   useNewUrlParser: true,
   useUnifiedTopology: true,

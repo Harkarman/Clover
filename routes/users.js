@@ -28,4 +28,14 @@ router.get("/sign-out", usersController.destroySession);
 router.get("/friends", friendsController.friendsPage);
 router.get("/friend-requests", friendsController.friendRequests);
 
+router.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] }) //* Scope defines user details to be fetched.
+);
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/users/sign-in" }),
+  usersController.createSession
+);
+
 module.exports = router;

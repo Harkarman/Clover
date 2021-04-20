@@ -29,6 +29,7 @@ app.use(cookieParser());
 const session = require("express-session");
 const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
+const passportGoogle = require("./config/passport-google-oauth2-strategy");
 const MongoStore = require("connect-mongo")(session);
 
 //Middlewares
@@ -38,12 +39,12 @@ const customMiddleware = require("./config/middleware");
 const chatServer = require("http").Server(app);
 const chatSockets = require("./config/chat_sockets").chatSockets(chatServer);
 chatServer.listen(5000);
-console.log("chat server is listening on port 5000");
+console.log("Chat server is listening on port 5000");
 
 app.use(
   session({
-    name: "development",
-    secret: "xp*Y=%sz8I+0:4m", //key used to encrypt the cookie
+    name: "clover",
+    secret: process.env.SESSION_COOKIE_KEY, //key used to encrypt the cookie
     saveUninitialized: false,
     resave: false,
     cookie: {
