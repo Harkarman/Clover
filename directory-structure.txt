@@ -1,0 +1,89 @@
+./
+├── assets
+│   ├── css
+│   │   ├── chat_box.css
+│   │   ├── footer.css
+│   │   ├── friends-users.css
+│   │   ├── header.css
+│   │   ├── home.css
+│   │   ├── layout.css
+│   │   ├── user-profile.css
+│   │   └── user-sign-up.css
+│   ├── images
+│   │   ├── clover.png
+│   │   └── profile-default.png
+│   └── js
+│       ├── chat_engine.js
+│       ├── home_posts.js
+│       ├── home_posts_comments.js
+│       └── toggle_likes.js
+├── config
+│   ├── chat_sockets.js
+│   ├── kue.js
+│   ├── middleware.js
+│   ├── mongoose.js
+│   ├── nodemailer.js
+│   ├── passport-google-oauth2-strategy.js
+│   └── passport-local-strategy.js
+├── controllers
+│   ├── comments-controller.js
+│   ├── friends-controller.js
+│   ├── home-controller.js
+│   ├── likes-controller.js
+│   ├── posts-controller.js
+│   ├── reset-password-controller.js
+│   └── users-controller.js
+├── dump.rdb
+├── gulpfile.js
+├── index.js
+├── mailers
+│   └── reset-password-mailer.js
+├── models
+│   ├── comment.js
+│   ├── friends.js
+│   ├── like.js
+│   ├── password-token.js
+│   ├── post.js
+│   └── user.js
+├── package-lock.json
+├── package.json
+├── production-logs
+│   └── access.log
+├── public
+│   └── assets
+│       ├── css
+│       ├── images
+│       └── js
+├── result.html
+├── result.txt
+├── routes
+│   ├── comments.js
+│   ├── friends.js
+│   ├── index.js
+│   ├── likes.js
+│   ├── posts.js
+│   ├── reset-password.js
+│   └── users.js
+├── uploads
+│   └── users
+│       └── avatar
+├── views
+│   ├── _chat_box.ejs
+│   ├── _comment.ejs
+│   ├── _footer.ejs
+│   ├── _header.ejs
+│   ├── _post.ejs
+│   ├── all-users.ejs
+│   ├── change-password.ejs
+│   ├── forgot-password-form.ejs
+│   ├── friend-requests.ejs
+│   ├── friends.ejs
+│   ├── home.ejs
+│   ├── layout.ejs
+│   ├── mails
+│   │   └── forgot-password-email.ejs
+│   ├── user-profile.ejs
+│   ├── user-sign-in.ejs
+│   └── user-sign-up.ejs
+└── workers
+    └── reset-password-worker.js
